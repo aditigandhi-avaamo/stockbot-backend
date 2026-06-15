@@ -467,16 +467,24 @@ app.get("/api/explore-stocks", async (req, res) => {
 
   try {
 
-    const stocks = [
-      "AAPL",
-      "MSFT",
-      "NVDA",
-      "SBIN.NS",
-      "HDFCBANK.NS",    
-      "RELIANCE.NS",
-      "TCS.NS",
-      "INFY.NS"
-    ];
+    const pool = [
+  "AAPL",
+  "MSFT",
+  "NVDA",
+  "GOOGL",
+  "AMZN",
+  "META",
+  "TSLA",
+  "SBIN.NS",
+  "HDFCBANK.NS",
+  "RELIANCE.NS",
+  "TCS.NS",
+  "INFY.NS"
+];
+
+const stocks = pool
+  .sort(() => Math.random() - 0.5)
+  .slice(0, 8);
 
     const results = [];
 
@@ -488,6 +496,61 @@ app.get("/api/explore-stocks", async (req, res) => {
         symbol: quote.symbol,
         companyName: quote.longName || quote.shortName,
         price: quote.regularMarketPrice
+      });
+
+    }
+
+    res.json(results);
+
+  } catch(error) {
+
+    res.status(500).json({
+      error: error.message
+    });
+
+  }
+
+});
+
+app.get("/api/compare-watchlist/:mobile", async (req, res) => {
+
+  try {
+
+    const user = await User.findOne({
+      mobile: req.params.mobile
+    });
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found"
+      });
+    }
+
+    const results = [];
+
+    for (const stock of user.watchlist) {
+
+      const quote = await yahooFinance.quote(
+        stock.symbol
+      );
+
+      results.push({
+
+        symbol: quote.symbol,
+
+        companyName:
+          quote.longName ||
+          quote.shortName,
+
+        price:
+          quote.regularMarketPrice,
+
+        change:
+          quote.regularMarketChangePercent,
+
+        marketCap:
+          quote.marketCap
+
       });
 
     }
