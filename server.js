@@ -567,6 +567,72 @@ app.get("/api/compare-watchlist/:mobile", async (req, res) => {
 
 });
 
+app.post("/api/compare-multiple", async (req, res) => {
+
+  try {
+
+    const symbols = req.body.symbols || [];
+
+    if (!symbols.length) {
+
+      return res.status(400).json({
+        message: "No symbols provided"
+      });
+
+    }
+
+    const results = [];
+
+    for (const symbol of symbols) {
+
+      try {
+
+        const quote =
+          await yahooFinance.quote(symbol);
+
+        results.push({
+
+          symbol: quote.symbol,
+
+          companyName:
+            quote.longName ||
+            quote.shortName ||
+            symbol,
+
+          price:
+            quote.regularMarketPrice,
+
+          change:
+            quote.regularMarketChangePercent,
+
+          marketCap:
+            quote.marketCap
+
+        });
+
+      } catch (e) {
+
+        console.log(
+          "Failed for",
+          symbol
+        );
+
+      }
+
+    }
+
+    res.json(results);
+
+  } catch (error) {
+
+    res.status(500).json({
+      error: error.message
+    });
+
+  }
+
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
