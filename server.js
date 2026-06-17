@@ -596,6 +596,239 @@ app.get("/api/compare-watchlist/:mobile", async (req, res) => {
   }
 ]
 
+app.post("/api/compare-multiple", async (req, res) => {
+
+  try {
+
+    const inputs = req.body.symbols;
+
+    if (!inputs || inputs.length < 2) {
+
+      return res.status(400).json({
+        message: "At least 2 stocks are required"
+      });
+
+    }
+
+    const results = [];
+
+    const indianAliases = {
+
+      "sbi": "SBIN.NS",
+      "state bank of india": "SBIN.NS",
+
+      "hdfc": "HDFCBANK.NS",
+      "hdfc bank": "HDFCBANK.NS",
+
+      "icici": "IBN",
+      "icici bank": "IBN",
+
+      "axis": "AXISBANK.NS",
+      "axis bank": "AXISBANK.NS",
+
+      "kotak": "KOTAKBANK.NS",
+      "kotak bank": "KOTAKBANK.NS",
+
+      "reliance": "RELIANCE.NS",
+
+      "tcs": "TCS.NS",
+
+      "infosys": "INFY.NS"
+
+    };
+
+    function pickBestMatch(quotes, input) {
+
+      if (!quotes || quotes.length === 0) {
+        return null;
+      }
+
+      const query =
+        input.toLowerCase().trim();
+
+      // Exact symbol match
+
+      const exactSymbol =
+        quotes.find(q =>
+          q.symbol &&
+          q.symbol.toLowerCase() === query
+        );
+
+      if (exactSymbol) {
+        return exactSymbol;
+      }
+
+      // Prefer NSE
+
+      const nseStock =
+        quotes.find(q =>
+          q.symbol &&
+          q.symbol.endsWith(".NS")
+        );
+
+      if (nseStock) {
+        return nseStock;
+      }
+
+      // Prefer BSE
+
+      const bseStock =
+        quotes.find(q =>
+          q.symbol &&
+          q.symbol.endsWith(".BO")
+        );
+
+      if (bseStock) {
+        return bseStock;
+      }
+
+      // Company name contains query
+
+      const nameMatch =
+        quotes.find(q =>
+          q.shortname &&
+          q.shortname
+            .toLowerCase()
+            .includes(query)
+        );
+
+      if (nameMatch) {
+        return nameMatch;
+      }
+
+      return quotes[0];
+
+    }
+
+    for (const input of inputs) {
+
+      try {
+
+        const normalized =
+          input.toLowerCase().trim();
+
+        // Handle known Indian names
+
+        if (indianAliases[normalized]) {
+
+          const quote =
+            await yahooFinance.quote(
+              indianAliases[normalized]
+            );
+
+          console.log(
+            "Alias:",
+            input,
+            "→",
+            quote.symbol
+          );
+
+          results.push({
+
+            symbol:
+              quote.symbol,
+
+            companyName:
+              quote.longName ||
+              quote.shortName,
+
+            price:
+              quote.regularMarketPrice,
+
+            change:
+              quote.regularMarketChangePercent,
+
+            marketCap:
+              quote.marketCap
+
+          });
+
+          continue;
+
+        }
+
+        const searchResult =
+          await yahooFinance.search(input);
+
+        if (
+          !searchResult ||
+          !searchResult.quotes ||
+          searchResult.quotes.length === 0
+        ) {
+          continue;
+        }
+
+        const bestMatch =
+          pickBestMatch(
+            searchResult.quotes,
+            input
+          );
+
+        if (!bestMatch) {
+          continue;
+        }
+
+        console.log(
+          "Input:",
+          input
+        );
+
+        console.log(
+          "Resolved symbol:",
+          bestMatch.symbol
+        );
+
+        const quote =
+          await yahooFinance.quote(
+            bestMatch.symbol
+          );
+
+        results.push({
+
+          symbol:
+            quote.symbol,
+
+          companyName:
+            quote.longName ||
+            quote.shortName ||
+            bestMatch.shortname ||
+            input,
+
+          price:
+            quote.regularMarketPrice,
+
+          change:
+            quote.regularMarketChangePercent,
+
+          marketCap:
+            quote.marketCap
+
+        });
+
+      } catch(err) {
+
+        console.log(
+          "Failed for",
+          input,
+          err.message
+        );
+
+      }
+
+    }
+
+    res.json(results);
+
+  } catch(error) {
+
+    res.status(500).json({
+      error: error.message
+    });
+
+  }
+
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
