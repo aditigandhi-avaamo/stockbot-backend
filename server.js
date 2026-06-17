@@ -577,6 +577,25 @@ app.get("/api/compare-watchlist/:mobile", async (req, res) => {
 
 });
 
+[
+  {
+    "symbol":"HDFCBANK.NS",
+    "companyName":"HDFC Bank Limited"
+  },
+  {
+    "symbol":"HSBC",
+    "companyName":"HSBC Holdings plc"
+  },
+  {
+    "symbol":"IBN",
+    "companyName":"ICICI Bank Limited"
+  },
+  {
+    "symbol":"SBIN.NS",
+    "companyName":"State Bank of India"
+  }
+]
+
 app.post("/api/compare-multiple", async (req, res) => {
 
   try {
