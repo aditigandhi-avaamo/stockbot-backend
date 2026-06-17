@@ -1,0 +1,15 @@
+{
+  "name": "reopenTicket",
+  "description": "Reopen a closed ticket.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "ticket_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "ticket_id"
+    ]
+  }
+}

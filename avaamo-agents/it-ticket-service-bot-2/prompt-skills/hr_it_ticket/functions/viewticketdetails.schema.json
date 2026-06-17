@@ -1,0 +1,16 @@
+{
+  "name": "viewTicketDetails",
+  "description": "Shows full details for a selected ticket.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "ticket_id": {
+        "type": "string",
+        "description": "Ticket ID"
+      }
+    },
+    "required": [
+      "ticket_id"
+    ]
+  }
+}

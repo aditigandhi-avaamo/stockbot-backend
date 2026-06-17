@@ -1,0 +1,11 @@
+{
+  "id": 3530,
+  "uuid": "5d94c694-051c-4609-8625-e74d92fddb98",
+  "display_name": "IT Ticket service bot 2",
+  "first_name": "IT Ticket service bot 2",
+  "description": "Helps employees raise IT support tickets for hardware and software issues.\n\n\n\nCopy of Copy of HR IT Ticket Bot 3",
+  "agentic": true,
+  "status": "COMPLETE",
+  "welcome_prompt": null,
+  "custom_feedback_enabled": false
+}

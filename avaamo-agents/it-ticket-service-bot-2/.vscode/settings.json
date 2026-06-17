@@ -1,0 +1,11 @@
+{
+  "files.exclude": {
+    "**/.dashboard": true,
+    "**/.avaamo": true,
+    "**/.cline": true,
+    "**/.clinerules": true,
+    "**/.cursor": true,
+    "**/.github/copilot-instructions.md": true,
+    "**/.vscode": true
+  }
+}

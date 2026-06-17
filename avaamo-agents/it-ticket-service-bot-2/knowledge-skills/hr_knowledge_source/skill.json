@@ -1,0 +1,17 @@
+{
+  "id": 4738,
+  "uuid": "fb690ccb-4b78-4403-b602-17a5813785e9",
+  "key": "Hr_knowledge_source",
+  "name": "HR Service Documentation",
+  "description": "knowledge source to assits users with their hardaware or software issues",
+  "type": "llamb_content_skill",
+  "display_type": "Knowledge Skill",
+  "source_id": 654,
+  "status": "complete",
+  "enabled": true,
+  "enable_knowledge_sync": true,
+  "source_properties": {
+    "llamb_collect_feedback": true
+  },
+  "updated_at": 1781074065
+}

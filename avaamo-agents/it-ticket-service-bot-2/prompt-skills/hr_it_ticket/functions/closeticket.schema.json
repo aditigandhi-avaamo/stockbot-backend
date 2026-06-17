@@ -1,0 +1,15 @@
+{
+  "name": "closeTicket",
+  "description": "Close an existing ticket.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "ticket_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "ticket_id"
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "id": null,
+    "key": "confirmation_prompt_1",
+    "value": null,
+    "system_value": "Here is an option I can help with, based on what I understood. Can you confirm?"
+  },
+  {
+    "id": null,
+    "key": "confirmation_prompt_2",
+    "value": null,
+    "system_value": "Here is an option I can help with. Can you confirm?"
+  },
+  {
+    "id": null,
+    "key": "disambiguation_prompt_1",
+    "value": null,
+    "system_value": "Sorry, I’m not clear on what you’re asking. Is your message about any of these topics?"
+  },
+  {
+    "id": null,
+    "key": "disambiguation_prompt_2",
+    "value": null,
+    "system_value": "I’m not sure I understand. Did you mean any of these?"
+  },
+  {
+    "id": null,
+    "key": "disambiguation_prompt_3",
+    "value": null,
+    "system_value": "Hmm, can you be a little more specific?"
+  },
+  {
+    "id": null,
+    "key": "disambiguation_prompt_4",
+    "value": null,
+    "system_value": "Is your message about any of these topics?"
+  },
+  {
+    "id": null,
+    "key": "disambiguation_prompt_5",
+    "value": null,
+    "system_value": "I didn’t quite get that. Is your message about any of these topics?"
+  },
+  {
+    "id": null,
+    "key": "invalid_name_prompt_1",
+    "value": null,
+    "system_value": "Please enter a valid name"
+  },
+  {
+    "id": null,
+    "key": "question_repetition_separator",
+    "value": null,
+    "system_value": "..."
+  },
+  {
+    "id": null,
+    "key": "civr_no_reply",
+    "value": null,
+    "system_value": "I am still here listening."
+  }
+]

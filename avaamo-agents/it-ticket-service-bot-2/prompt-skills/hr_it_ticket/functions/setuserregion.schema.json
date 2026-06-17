@@ -1,0 +1,8 @@
+{
+  "name": "setUserRegion",
+  "description": "Set the user region property from JWT context. Call this once at the start of every conversation before any knowledge lookup.",
+  "parameters": {
+    "type": "object",
+    "properties": {}
+  }
+}

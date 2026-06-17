@@ -1,0 +1,49 @@
+{
+  "name": "updateTicketField",
+  "description": "Update one or more ticket fields in storage. Pass ALL changed fields together in a single call — never call this multiple times for the same update. Omit or pass null for fields that are not changing. After this, always call getTicketSummary() to show the updated summary.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "description": {
+        "type": "string",
+        "description": "Updated issue description."
+      },
+      "category": {
+        "type": "string",
+        "description": "Updated category. Must be 'Hardware' or 'Software'.",
+        "enum": [
+          "Hardware",
+          "Software"
+        ]
+      },
+      "subcategory": {
+        "type": "string",
+        "description": "Updated subcategory."
+      },
+      "requester_name": {
+        "type": "string",
+        "description": "Updated requester full name."
+      },
+      "requester_employee_id": {
+        "type": "string",
+        "description": "Updated requester employee ID."
+      },
+      "requester_email": {
+        "type": "string",
+        "description": "Updated requester email."
+      },
+      "requester_department": {
+        "type": "string",
+        "description": "Updated requester department."
+      },
+      "attachment_name": {
+        "type": "string",
+        "description": "Attachment file name. Pass empty string to clear."
+      },
+      "attachment_url": {
+        "type": "string",
+        "description": "Attachment URL. Pass empty string to clear."
+      }
+    }
+  }
+}

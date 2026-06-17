@@ -1,0 +1,12 @@
+.env
+.env.local
+.dashboard/
+*.dashboard
+.avaamo-chat/
+.avaamo/
+results/
+regression/results/
+env/*.local.json
+env/secrets.json
+node_modules
+knowledge-skills/*/content-sources/*/files/

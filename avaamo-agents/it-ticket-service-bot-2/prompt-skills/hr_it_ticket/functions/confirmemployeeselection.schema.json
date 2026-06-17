@@ -1,0 +1,21 @@
+{
+  "name": "confirmEmployeeSelection",
+  "description": "Call this to confirm and store a selected employee as the ticket requester. Use in these cases: (1) user taps Select button — hidden_content has emp_selected::, pass the employee_id; (2) user verbally selects from a list e.g. 'first one', 'second', 'the one from Marketing', 'yes', 'ok', 'continue' — pass selection_index or department_hint; (3) user gives an employee ID directly — pass employee_id. Never call getTicketSummary() yourself — this function instructs the LLM to do it.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "employee_id": {
+        "type": "string",
+        "description": "The employee ID if directly known from hidden_content or user input. e.g. EMP002"
+      },
+      "selection_index": {
+        "type": "number",
+        "description": "0-based index of the employee in the last shown list. Use 0 for first, 1 for second, 2 for third."
+      },
+      "department_hint": {
+        "type": "string",
+        "description": "Department name if user said something like 'the one from Marketing' or 'the Marketing one'."
+      }
+    }
+  }
+}

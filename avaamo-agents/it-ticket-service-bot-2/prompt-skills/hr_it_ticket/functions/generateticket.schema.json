@@ -1,0 +1,8 @@
+{
+  "name": "generateTicket",
+  "description": "Generate the final IT support ticket after the user confirms the summary. Creates a unique ticket ID starting with HRC followed by 8 digits. Call this immediately when the user approves the summary — any word meaning yes (right, ok, confirm, correct, looks good, proceed, go ahead, create it, yep) is an approval.",
+  "parameters": {
+    "type": "object",
+    "properties": {}
+  }
+}

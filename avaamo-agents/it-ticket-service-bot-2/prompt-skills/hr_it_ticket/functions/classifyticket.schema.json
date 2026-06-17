@@ -1,0 +1,16 @@
+{
+  "name": "classifyTicket",
+  "description": "Auto-classify the user's issue description into an IT category (Hardware or Software) and a subcategory. Call this immediately after the user describes their issue. Do not show the result to the user — store it silently. Returns success true with category and subcategory, or success false if classification failed.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "description": {
+        "type": "string",
+        "description": "The full issue description provided by the user."
+      }
+    },
+    "required": [
+      "description"
+    ]
+  }
+}

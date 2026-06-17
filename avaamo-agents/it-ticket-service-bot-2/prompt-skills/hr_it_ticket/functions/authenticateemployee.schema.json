@@ -1,0 +1,21 @@
+{
+  "name": "authenticateEmployee",
+  "description": "Verify the employee by checking their Employee ID and email against the employee database. Call this after the user provides both. Returns success:true with employee details on match, or success:false with a partial_match field ('employee_id', 'email', or 'none') to guide the error message.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "employee_id": {
+        "type": "string",
+        "description": "Employee ID provided by the user, e.g. EMP008"
+      },
+      "email": {
+        "type": "string",
+        "description": "Email address provided by the user"
+      }
+    },
+    "required": [
+      "employee_id",
+      "email"
+    ]
+  }
+}

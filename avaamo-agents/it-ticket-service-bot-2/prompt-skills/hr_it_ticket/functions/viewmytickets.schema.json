@@ -1,0 +1,36 @@
+{
+  "name": "viewMyTickets",
+  "description": " Fetch and display the authenticated user's tickets. Retrieve tickets for the authenticated user with optional filters. Supports time filter (today, this_week, last_month, all), status filter (Open, Closed, Cancelled), category filter (Hardware, Software), subcategory filter (exact subcategory name like Laptop, Slack, Zoom), and keyword filter (any word appearing in the description). Call this when the user asks to view, check, or list their tickets. Also call when user asks to close, reopen, or update a ticket so they can select which one.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "filter": {
+        "type": "string",
+        "description": "Time filter. One of: today, this_week, last_month, all.",
+        "enum": [
+          "today",
+          "this_week",
+          "last_month",
+          "all"
+        ]
+      },
+      "status_filter": {
+        "type": "string",
+        "description": "Filter by ticket status. One of: Open, Closed, Cancelled."
+      },
+      "category_filter": {
+        "type": "string",
+        "description": "Filter by category. One of: Hardware, Software."
+      },
+      "subcategory_filter": {
+        "type": "string",
+        "description": "Filter by subcategory name e.g. Laptop, Slack, Zoom, Monitor, VPN."
+      },
+      "keyword_filter": {
+        "type": "string",
+        "description": "Filter by keyword appearing anywhere in the ticket description e.g. screen, password, login."
+      }
+    },
+    "required": []
+  }
+}

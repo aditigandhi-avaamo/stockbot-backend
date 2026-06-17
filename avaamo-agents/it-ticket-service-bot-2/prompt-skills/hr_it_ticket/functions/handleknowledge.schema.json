@@ -1,0 +1,16 @@
+{
+  "name": "handleKnowledge",
+  "description": "Search the IT knowledge base for a solution to the user's issue before creating a ticket. Call this immediately after the user describes their issue, before calling classifyTicket(). Pass the user's exact description as the query. If an answer is found, show it to the user and ask if they still want to raise a ticket. If no answer is found, silently proceed to classifyTicket().",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "description": "The user's exact issue description to search in the knowledge base."
+      }
+    },
+    "required": [
+      "query"
+    ]
+  }
+}

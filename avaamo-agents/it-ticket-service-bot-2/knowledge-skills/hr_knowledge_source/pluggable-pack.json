@@ -1,0 +1,36 @@
+{
+  "id": 654,
+  "name": "HR Service Documentation",
+  "description": "knowledge source to assits users with their hardaware or software issues",
+  "skill_type": "llamb_content_skill",
+  "agent": {
+    "id": 3530,
+    "name": "IT Ticket service bot 2",
+    "uuid": "5d94c694-051c-4609-8625-e74d92fddb98",
+    "avatar_url": "https://c27avaamo.s3.us-west-2.amazonaws.com/dashboard/bots/avatars/000/003/530/thumb/_.gif?[redacted]",
+    "web_channel_theme": "avm-mercury-v2",
+    "stage": "development",
+    "phone_enabled": false,
+    "voice_persona_ids": [
+      1
+    ],
+    "information_masking_enabled": false,
+    "web_voice_enabled": false,
+    "ios_voice_enabled": false,
+    "android_voice_enabled": false,
+    "use_llm_inference": null
+  },
+  "dashboard_user_id": 453,
+  "pack_type": "llamb_content_skill",
+  "editable": true,
+  "status": "COMPLETE",
+  "view_skill_url": "https://llambx1.avaamo.com/answers/webhook?[redacted]",
+  "hide_header": false,
+  "icon_url": "https://c27avaamo.s3.us-west-2.amazonaws.com/bots/templates/icons/000/000/005/thumb/LLaMB_blue.png?[redacted]",
+  "skill_key": "Hr_knowledge_source",
+  "skill_display_type": "Knowledge Skill",
+  "skill_enabled": true,
+  "properties": {
+    "llamb_collect_feedback": true
+  }
+}

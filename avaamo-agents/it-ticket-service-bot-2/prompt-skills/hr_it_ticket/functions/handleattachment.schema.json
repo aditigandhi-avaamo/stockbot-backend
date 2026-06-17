@@ -1,0 +1,8 @@
+{
+  "name": "handleAttachment",
+  "description": "Render a file upload card so the user can attach a screenshot or document to the ticket. Call this only when the user says yes to adding an attachment.",
+  "parameters": {
+    "type": "object",
+    "properties": {}
+  }
+}

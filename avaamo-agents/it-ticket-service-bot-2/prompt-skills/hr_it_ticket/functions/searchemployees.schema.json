@@ -1,0 +1,16 @@
+{
+  "name": "searchEmployees",
+  "description": "Search the employee database by name, email, or employee ID and return matching employees as a selectable list. Call this first whenever the user provides any name or partial info in the 'someone else' flow. Only fall back to manual entry if this returns success:false.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "description": "Partial or full name, email, or employee ID to search for."
+      }
+    },
+    "required": [
+      "query"
+    ]
+  }
+}

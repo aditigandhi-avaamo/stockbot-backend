@@ -50,8 +50,10 @@ app.post("/api/users", async (req, res) => {
 app.post("/api/watchlist/add", async (req, res) => {
 
   try {
-
+    
     const { mobile, symbol, companyName } = req.body;
+
+    console.log("Mobile provided (watchlist add):", mobile);
 
     const user = await User.findOne({ mobile });
 
@@ -92,6 +94,8 @@ app.get("/api/watchlist/:mobile", async (req, res) => {
 
   try {
 
+    console.log("Mobile requested (watchlist):", req.params.mobile);
+
     const user = await User.findOne({
       mobile: req.params.mobile
     });
@@ -122,8 +126,10 @@ app.get("/api/watchlist/:mobile", async (req, res) => {
 app.post("/api/watchlist/remove", async (req, res) => {
 
   try {
-
+    
     const { mobile, symbol } = req.body;
+
+    console.log("Mobile provided (watchlist remove):", mobile);
 
     const user = await User.findOne({ mobile });
 
@@ -156,8 +162,10 @@ app.post("/api/watchlist/remove", async (req, res) => {
 
 app.post("/api/register", async (req, res) => {
   try {
-
+    
     const { mobile, name } = req.body;
+
+    console.log("Mobile provided (register):", mobile);
 
     const mobileRegex = /^[6-9]\d{9}$/;
 
@@ -194,6 +202,8 @@ app.post("/api/register", async (req, res) => {
 app.get("/api/user/:mobile", async (req, res) => {
 
   try {
+    
+    console.log("Mobile requested (user):", req.params.mobile);
 
     const user = await User.findOne({
       mobile: req.params.mobile
@@ -571,33 +581,101 @@ app.post("/api/compare-multiple", async (req, res) => {
 
   try {
 
-    const symbols = req.body.symbols || [];
+    const inputs = req.body.symbols;
 
-    if (!symbols.length) {
+    if (!inputs || inputs.length < 2) {
 
       return res.status(400).json({
-        message: "No symbols provided"
+        message: "At least 2 stocks are required"
       });
 
     }
 
     const results = [];
 
-    for (const symbol of symbols) {
+    function pickBestMatch(quotes, input) {
+
+      if (!quotes || quotes.length === 0) {
+        return null;
+      }
+
+      const query = input.toLowerCase();
+
+      // Exact symbol match
+      const exactSymbol = quotes.find(q =>
+        q.symbol &&
+        q.symbol.toLowerCase() === query
+      );
+
+      if (exactSymbol) {
+        return exactSymbol;
+      }
+
+      // Exact company name match
+      const exactName = quotes.find(q =>
+        q.shortname &&
+        q.shortname.toLowerCase().includes(query)
+      );
+
+      if (exactName) {
+        return exactName;
+      }
+
+      // Prefer NSE stocks
+      const nseStock = quotes.find(q =>
+        q.symbol &&
+        q.symbol.endsWith(".NS")
+      );
+
+      if (nseStock) {
+        return nseStock;
+      }
+
+      // Otherwise first result
+      return quotes[0];
+
+    }
+
+    for (const input of inputs) {
 
       try {
 
+        const searchResult =
+          await yahooFinance.search(input);
+
+        if (
+          !searchResult ||
+          !searchResult.quotes ||
+          searchResult.quotes.length === 0
+        ) {
+          continue;
+        }
+
+        const bestMatch =
+          pickBestMatch(
+            searchResult.quotes,
+            input
+          );
+
+        if (!bestMatch) {
+          continue;
+        }
+
         const quote =
-          await yahooFinance.quote(symbol);
+          await yahooFinance.quote(
+            bestMatch.symbol
+          );
 
         results.push({
 
-          symbol: quote.symbol,
+          symbol:
+            quote.symbol,
 
           companyName:
             quote.longName ||
             quote.shortName ||
-            symbol,
+            bestMatch.shortname ||
+            input,
 
           price:
             quote.regularMarketPrice,
@@ -610,11 +688,12 @@ app.post("/api/compare-multiple", async (req, res) => {
 
         });
 
-      } catch (e) {
+      } catch(err) {
 
         console.log(
           "Failed for",
-          symbol
+          input,
+          err.message
         );
 
       }
@@ -623,7 +702,7 @@ app.post("/api/compare-multiple", async (req, res) => {
 
     res.json(results);
 
-  } catch (error) {
+  } catch(error) {
 
     res.status(500).json({
       error: error.message
@@ -632,6 +711,7 @@ app.post("/api/compare-multiple", async (req, res) => {
   }
 
 });
+        
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

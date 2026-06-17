@@ -1,0 +1,21 @@
+{
+  "name": "validateEmployee",
+  "description": "Validate an employee by name, employee ID, and email. Use this only when searchEmployees() returned no results and the user manually provided all three fields.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Full name of the employee."
+      },
+      "employee_id": {
+        "type": "string",
+        "description": "Employee ID."
+      },
+      "email": {
+        "type": "string",
+        "description": "Email address."
+      }
+    }
+  }
+}

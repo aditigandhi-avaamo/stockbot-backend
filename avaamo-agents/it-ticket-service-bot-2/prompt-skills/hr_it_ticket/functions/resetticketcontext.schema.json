@@ -1,0 +1,8 @@
+{
+  "name": "resetTicketContext",
+  "description": "Clears all current ticket creation state so a new ticket can be created from scratch.",
+  "parameters": {
+    "type": "object",
+    "properties": {}
+  }
+}

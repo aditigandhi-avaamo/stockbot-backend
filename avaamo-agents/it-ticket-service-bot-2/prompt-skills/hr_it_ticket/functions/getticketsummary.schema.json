@@ -1,0 +1,20 @@
+{
+  "name": "getTicketSummary",
+  "description": "Read all stored ticket fields and return a formatted summary card for the user to review. Call this after all steps (description, classification, attachment, requester) are complete. The card has two buttons: Confirm and Update.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "requestor_type": {
+        "type": "string",
+        "description": "Either 'myself' or 'someone_else'.",
+        "enum": [
+          "myself",
+          "someone_else"
+        ]
+      }
+    },
+    "required": [
+      "requestor_type"
+    ]
+  }
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "id": 12,
+    "file_type_display": "html",
+    "created_at": "2024-10-10T16:58:30.288156Z",
+    "updated_at": "2026-06-12T09:02:46.833754Z",
+    "uuid": "2d30f3b0-0a42-4d86-a7ff-eccbd46d182f",
+    "name": "HTML document",
+    "file_type": "text/html",
+    "key": "htmldocs",
+    "template_json": null,
+    "is_default": true,
+    "skill": null
+  },
+  {
+    "id": 11,
+    "file_type_display": "pptx",
+    "created_at": "2024-10-10T16:58:30.264442Z",
+    "updated_at": "2026-06-12T09:02:46.819429Z",
+    "uuid": "c13883a3-9d57-416e-9e3b-8443e928f704",
+    "name": "Power Point Presentation",
+    "file_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+    "key": "PptxDocumentTemplate",
+    "template_json": null,
+    "is_default": true,
+    "skill": null
+  },
+  {
+    "id": 10,
+    "file_type_display": "docx",
+    "created_at": "2024-10-10T16:58:30.222298Z",
+    "updated_at": "2026-06-12T09:02:46.807111Z",
+    "uuid": "0b9bee4e-92d5-4d73-b9de-4e3f0206b6ae",
+    "name": "MS Office Word Document",
+    "file_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "key": "DocxDocumentTemplate",
+    "template_json": null,
+    "is_default": true,
+    "skill": null
+  },
+  {
+    "id": 9,
+    "file_type_display": "xlsx",
+    "created_at": "2024-10-10T16:58:30.199345Z",
+    "updated_at": "2026-06-12T09:02:46.792866Z",
+    "uuid": "8d7ca6f8-ae51-4b47-bd64-7c5d8aeafa36",
+    "name": "Excel/CSV Spreadsheet",
+    "file_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "key": "ExcelDocumentTemplate",
+    "template_json": null,
+    "is_default": true,
+    "skill": null
+  },
+  {
+    "id": 7,
+    "file_type_display": "url",
+    "created_at": "2024-10-10T16:58:30.160989Z",
+    "updated_at": "2026-06-12T09:02:46.765428Z",
+    "uuid": "8e870539-7a7d-4da8-88e4-19c43f6722f7",
+    "name": "URL or HTML content",
+    "file_type": "url",
+    "key": "avaamodocs",
+    "template_json": null,
+    "is_default": true,
+    "skill": null
+  },
+  {
+    "id": 6,
+    "file_type_display": "pdf",
+    "created_at": "2024-10-10T16:58:30.105946Z",
+    "updated_at": "2026-06-12T09:02:46.751598Z",
+    "uuid": "acf1c172-f2f7-43b0-9b36-f71009165e43",
+    "name": "Default",
+    "file_type": "application/pdf",
+    "key": "SimpleTemplate",
+    "template_json": null,
+    "is_default": true,
+    "skill": null
+  }
+]

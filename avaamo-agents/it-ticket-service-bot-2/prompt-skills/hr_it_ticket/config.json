@@ -1,0 +1,12 @@
+{
+  "id": 1764,
+  "key": "hr_it_ticket",
+  "name": "HR IT Ticket",
+  "description": "HR IT Ticket Skill",
+  "voice": "alloy",
+  "model": "gpt-realtime",
+  "entrypoint": true,
+  "parameters": {},
+  "instructions": [],
+  "asr_entities": []
+}

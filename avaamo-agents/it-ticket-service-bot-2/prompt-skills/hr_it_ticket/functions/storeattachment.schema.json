@@ -1,0 +1,21 @@
+{
+  "name": "storeAttachment",
+  "description": "Store the uploaded file permanently. Call this ONLY after the user has submitted the file upload card AND a file link has appeared in the conversation. Extract the file URL and filename from that link and pass them here. Never call this before the user uploads. Never call this immediately after handleAttachment.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "file_url": {
+        "type": "string",
+        "description": "The S3 URL of the uploaded file as it appeared in the conversation after upload."
+      },
+      "file_name": {
+        "type": "string",
+        "description": "The filename of the uploaded file as it appeared in the conversation."
+      }
+    },
+    "required": [
+      "file_url",
+      "file_name"
+    ]
+  }
+}
